@@ -9,16 +9,23 @@ En `dormilones.py` vimos tres ejemplos básicos de ejecución:
 Entonces responda:
 - ¿Por qué los segundos que se imprimen que pasaron son 2, 0 y 1 (aprox.) respectivamente?
 
- + En el ejemplo clasico secuencial pasan 2 segundos porque el código se ejecuta de manera secuencial, linea por linea. 
- + En el segundo caso con threads se crean dos hilos (Threads) y se ejecuta el código de manera concurrente, de modo tal que se ejecuta la linea de finalizar e imprimir antes de que termine de pasar el tiempo de dormir().
- + En el tercer ejemplo se ejecuta de manera concurrente/secuencial porque los join() hacen que cada hilo tenga que esperar a que termine la cuenta de un segundo antes de seguir procesando. Pasa 1 segundo solamente porque los dos hilos ejecutan el join() al mismo tiempo. Se ejecuta de manera concurrente de todas maneras.
+  En el ejemplo clasico secuencial pasan 2 segundos porque el código se ejecuta de manera secuencial, linea por linea. 
+ 
+  En el segundo caso con threads se crean dos hilos (Threads) y se ejecuta el código de manera concurrente, de modo tal que se ejecuta la linea de finalizar e imprimir antes de que termine de pasar el tiempo de dormir().
+ 
+  En el tercer ejemplo se ejecuta de manera concurrente/secuencial porque los join() hacen que cada hilo tenga que esperar a que termine la cuenta de un segundo antes de seguir procesando. Pasa 1 segundo solamente porque los dos hilos ejecutan el join() al mismo tiempo. Se ejecuta de manera concurrente de todas maneras.
 
 - ¿Cuántos hilos o threads hay en cada caso?
- + En el primer caso hay un solo hilo de procesamiento, el main. En el segundo y el tercero hay 3, contando con el main y los dos creados.
+ 
+  En el primer caso hay un solo hilo de procesamiento, el main. En el segundo y el tercero hay 3, contando con el main y los dos creados.
+
 - Los últimos dos ejemplos tienen la misma cantidad de threads cada uno, ¿cuál sería la diferencia entonces?
-  + La única diferencia es el join() que hace que haya que esperar la cuenta de un segundo para seguir procesando.
+  
+  La única diferencia es el join() que hace que haya que esperar la cuenta de un segundo para seguir procesando.
+
 - En el último ejemplo, ¿qué desventaja o desventajas le ve al uso del `join()`?
-  + Una desventaja puede ser la  perdida de tiempo, ya que hay que detener todo el flujo de procesamiento para esperar a los hilos.
+  
+  Una desventaja puede ser la  perdida de tiempo, ya que hay que detener todo el flujo de procesamiento para esperar a los hilos.
 
 
 # Muchos threads
