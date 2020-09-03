@@ -1,5 +1,6 @@
 import threading
 
+
 THREADS = 2
 MAX_COUNT = 1000000
 
@@ -19,10 +20,13 @@ threads = []
 for i in range(THREADS):
     t = threading.Thread(target=cuenta)
     threads.append(t)
+
     t.start()
 
 for t in threads:
     t.join()
 
 print(f"Valor del contador: {counter}")
+
+
 

@@ -43,6 +43,9 @@ Mirá el código y fijate de entender la sintaxis.
 ## Parte 2
 Ahora corré el script: ¿por qué tarda lo que tarda? 
 
+  Cuando se crean los threads se especifica en los argumentos la cantidad de tiempo del sleep, se recorre el primer for instantaneamente y pasa al segundo ya habíendo iniciado el contador. En el segundo for se ejecuta el join() de todos los threads al mismo tiempo, y como su contador inició al mismo tiempo van a terminar al mismo tiempo también. Finalmente se ejecuta finalizar e imprimir.
+
+
 
 # Intercalación en concurrencia
 
@@ -54,13 +57,19 @@ Ahora corré el script: ¿por qué tarda lo que tarda?
 
 Mirando el código de `contadorConcurrente.py`, pero sin ejecutarlo:
 - Al ejecutar la función `cuenta()`, ¿cuántas veces se ejecuta el `for` que tiene adentro, y qué hace cada iteración del `for`?
+  El for se va a ejecutar el número de veces que diga el MAX_COUNT, con uno o más Threads. Cada iteración del FOR es un +1 a contador.
 - ¿Es verdad que cada thread lanza una ejecución de la función `cuenta()`?
+  Si, los Threads se dividen el MAX_COUNT y ejecutan la función por separado.
 - ¿Es verdad que se está esperando a que termine cada thread?
+  Solo se espera a que termine el primer thread. Cuando este termina imprime en consola aunque haya otro thread aún corriendo el FOR.
 - ¿Cúal te parece que es el valor que se imprime de `counter`?
+  El valor ideal que debería imprimir el counter sería 1M. Pero como el primer thread no espera a que termine el segundo, el valor que se imprime de counter va a ser un número entre 500.000 y 1M. 
 
 Ahora corré `contadorConcurrente.py`:
 - Correlo varias veces, ¿qué observás que pasa?
+  Da un número entre 500.000 y 1M en todas las ejecuciones.
 - ¿Por qué está pasando eso que observás?
+  Porque se espera a que termine el primer thread que se ejecuta, cuando este termina imprime en la terminal directamente aunque no haya terminado el segundo thread. El segundo thread puede haber ejecutado el FOR algunas veces, pero se va a imprimir en consola antes de que este termine (depende la PC).  Por esto siempre da entre 500.000 y 1M.
 
 
 # ¿Secuencial clásico, concurrente o paralelo?
